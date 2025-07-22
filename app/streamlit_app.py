@@ -16,7 +16,7 @@ import numpy as np
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
 # class names
-class_names = ['other', 'patriots']
+class_names = ['Other', 'Patriots']
 
 # load model
 @st.cache_resource
@@ -63,17 +63,27 @@ uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="Uploaded Image", width=200)
+    col1, col2 = st.columns([1, 2])
+    
+    with col1:
+        st.image(image, caption="Uploaded Image", width=250)
 
-    # preprocess the image
-    input_tensor = transform(image).unsqueeze(0).to(device)
+    with col2:
+        # preprocess the image
+        input_tensor = transform(image).unsqueeze(0).to(device)
 
-    # predict the image
-    with torch.no_grad():
-        outputs = model(input_tensor)
-        probabilities = torch.nn.functional.softmax(outputs[0], dim=0)
-        predicted_index = torch.argmax(probabilities).item()
-        predicted_class = class_names[predicted_index]
-        confidence = probabilities[predicted_index].item() * 100
+        # predict the image
+        with torch.no_grad():
+            outputs = model(input_tensor)
+            probabilities = torch.nn.functional.softmax(outputs[0], dim=0)
+            predicted_index = torch.argmax(probabilities).item()
+            predicted_class = class_names[predicted_index]
+            confidence = probabilities[predicted_index].item() * 100
 
-    st.markdown(f"#### Prediction: **{predicted_class}** ({confidence:.2f}% confidence)")
+        st.markdown(f"""
+            <div style='display: flex; align-items: center; height: 100%;'>
+                <div style='font-size: 1.5em; color: #002244; font-weight: bold; padding-left: 1em;'>
+                    Prediction: {predicted_class} ({confidence:.2f}% confidence)
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
