@@ -1,0 +1,5 @@
+# DS store
+.DS_Store
+
+# images due to size limits
+data/
