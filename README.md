@@ -34,6 +34,7 @@ project/
 ├── banners.jpg
 ├── photo_cleaner.py
 ├── predict.py
+├── requirements.txt
 └── train.py
 ```
 
