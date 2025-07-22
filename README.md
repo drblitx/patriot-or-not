@@ -17,7 +17,6 @@ Upload a photo of a football player and get a prediction like:
 * Torchvision for datasets and pretrained models
 * Pillow (PIL) for image loading
 * Streamlit for frontend demo
-* scikit-learn, NumPy, and matplotlib for evaluation
 
 ## 🔴 Folder Structure
 ```
@@ -32,6 +31,7 @@ project/
 │   └── sample_images/
 ├── LICENSE
 ├── README.md
+├── banners.jpg
 ├── photo_cleaner.py
 ├── predict.py
 └── train.py
@@ -46,6 +46,7 @@ To see the images that were used in this project, use this link: [patriots-or-no
 * `sample_images` (for Streamlit) has 11 images in original formats
 
 ## 🐐 To-Do / Improvements
+ * scikit-learn, NumPy, and matplotlib for evaluation
  * Add Grad-CAM visualizations
  * Improve accuracy with more images
  * Add image augmentation
