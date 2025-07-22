@@ -40,7 +40,40 @@ transform = transforms.Compose([
 ])
 
 # streamlit UI
-st.markdown("## 🏈🏆 Patriots-Or-Not: Dynasty Edition")
+st.title("Patriots-Or-Not: Dynasty Edition")
+st.image("banners.jpg", width=700)
+st.markdown("**Important:** This project is still a work in progress, as the training set is still pretty small (~600 images). " \
+"           Some results may be incorrect. Banner image is from u/Nobiting's [post](https://www.reddit.com/r/Patriots/comments/arrdqe/updated_gillette_stadium_super_bowl_banners_6x/) on r/Patriots.")
 
-uploaded_file = st.file_uploader("Upload a photo of an NFL player and find out if they're a **Brady-era Patriot**.", type=["jpg", "jpeg", "png"])
+st.markdown("""
+<hr style="
+    border: none;
+    height: 4px;
+    background: linear-gradient(to right, #C60C30, #A5ACAF, #002244);
+    margin: 2em 0;
+">
+""", unsafe_allow_html=True)
 
+st.markdown("""
+<div style='margin-bottom: -1.5em; text-align: center; font-size: 20px;'> 
+            Upload a photo of an NFL player to find out if they're a <b>Brady-era Patriot</b>.
+            </div>
+""", unsafe_allow_html=True)
+uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
+
+if uploaded_file is not None:
+    image = Image.open(uploaded_file).convert("RGB")
+    st.image(image, caption="Uploaded Image", width=200)
+
+    # preprocess the image
+    input_tensor = transform(image).unsqueeze(0).to(device)
+
+    # predict the image
+    with torch.no_grad():
+        outputs = model(input_tensor)
+        probabilities = torch.nn.functional.softmax(outputs[0], dim=0)
+        predicted_index = torch.argmax(probabilities).item()
+        predicted_class = class_names[predicted_index]
+        confidence = probabilities[predicted_index].item() * 100
+
+    st.markdown(f"#### Prediction: **{predicted_class}** ({confidence:.2f}% confidence)")

@@ -3,3 +3,6 @@
 
 # images due to size limits
 data/
+
+# streamlit config file
+.streamlit/
