@@ -68,7 +68,7 @@ uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
-    col1, col2 = st.columns([1, 2])
+    col1, col2 = st.columns([0.4, 0.6])
     
     with col1:
         st.image(image, caption="Uploaded Image", width=250)
@@ -85,12 +85,21 @@ if uploaded_file is not None:
             predicted_class = class_names[predicted_index]
             confidence = probabilities[predicted_index].item() * 100
 
+        # label and colors
+        if predicted_class == "Patriots":
+            label_text = "Brady-era Patriot"
+            label_color = "#002244"
+        else:
+            label_text = "Not a Brady-era Patriot"
+            label_color = "#C60C30"
+
         st.markdown(f"""
-        <div style='font-size: 1.5em; color: #002244; font-weight: bold; padding-left: 1em; line-height: 1.4;'>
-            { "Brady-era Patriot" if predicted_class == "Patriots" else "Not a Brady-era Patriot" }<br>
-            <span style='font-size: 1em; font-weight: normal; color: #444444;'>
+        <div style='padding-left: 0.5em; line-height: 1.4; text-align: left;'>
+            <div style='font-size: 2em; font-weight: bold; color: {label_color};'>
+                {label_text}
+            </div>
+            <div style='font-size: 1.2em; color: #444444;'>
                 {confidence:.2f}% confidence
-            </span>
+            </div>
         </div>
         """, unsafe_allow_html=True)
-
