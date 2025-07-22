@@ -22,18 +22,19 @@ Upload a photo of a football player and get a prediction like:
 ## 🔴 Folder Structure
 ```
 project/
-├── data/                  # not uploaded due to storage sizes; access photos via link in README
-│   ├── other/
-│   └── patriots/
-│   └── sample_images/
-├── model/
-│   └── patriot_classifier.pth
 ├── app/
 │   └── streamlit_app.py
-├── train.py
+├── model/
+│   └── patriot_classifier.pth
+├── data/                         # not uploaded due to storage sizes; access via link
+│   ├── other/
+│   ├── patriots/
+│   └── sample_images/
+├── LICENSE
+├── README.md
+├── photo_cleaner.py
 ├── predict.py
-└── README.md
-└── LICENSE
+└── train.py
 ```
 
 ## 🎞️ Accessing Images Used
