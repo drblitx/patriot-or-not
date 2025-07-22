@@ -39,6 +39,11 @@ project/
 ## 🎞️ Accessing Images Used
 To see the images that were used in this project, use this link: [patriots-or-not images](https://drive.google.com/drive/folders/1-HEccfBjIeWEabulW216z7I7QC4WsYua?usp=sharing)
 
+**Image Information**
+* `patriots` has 326 images in 224x224 format
+* `other` has 326 images in 224x224 format
+* `sample_images` (for website) has 11 images in original formats
+
 ## 🐐 To-Do / Improvements
  * Add Grad-CAM visualizations
  * Improve accuracy with more images
