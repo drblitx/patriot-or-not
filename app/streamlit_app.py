@@ -42,9 +42,14 @@ transform = transforms.Compose([
 # streamlit UI
 st.title("Patriots-Or-Not: Dynasty Edition")
 st.image("banners.jpg", width=700)
-st.markdown("**Important:** This project is still a work in progress, as the training set is still pretty small (~600 images). " \
-"           Some results may be incorrect. Banner image is from u/Nobiting's [post](https://www.reddit.com/r/Patriots/comments/arrdqe/updated_gillette_stadium_super_bowl_banners_6x/) on r/Patriots.")
-
+st.markdown("""
+        <div style="margin-bottom: 0px; font-size: 16px;">
+            <b>Important:</b> This project is still a work in progress, as the training set is still pretty small (~600 images). 
+            Some results may be incorrect. Banner image is from u/Nobiting's 
+            <a href="https://www.reddit.com/r/Patriots/comments/arrdqe/updated_gillette_stadium_super_bowl_banners_6x/" target="_blank">
+            post</a> on r/Patriots.
+        </div>
+        """, unsafe_allow_html=True)
 st.markdown("""
 <hr style="
     border: none;
@@ -81,9 +86,11 @@ if uploaded_file is not None:
             confidence = probabilities[predicted_index].item() * 100
 
         st.markdown(f"""
-            <div style='display: flex; align-items: center; height: 100%;'>
-                <div style='font-size: 1.5em; color: #002244; font-weight: bold; padding-left: 1em;'>
-                    Prediction: {predicted_class} ({confidence:.2f}% confidence)
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+        <div style='font-size: 1.5em; color: #002244; font-weight: bold; padding-left: 1em; line-height: 1.4;'>
+            { "Brady-era Patriot" if predicted_class == "Patriots" else "Not a Brady-era Patriot" }<br>
+            <span style='font-size: 1em; font-weight: normal; color: #444444;'>
+                {confidence:.2f}% confidence
+            </span>
+        </div>
+        """, unsafe_allow_html=True)
+
