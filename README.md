@@ -43,7 +43,7 @@ To see the images that were used in this project, use this link: [patriots-or-no
 **Image Information**
 * `patriots` has 326 images in 224x224 format
 * `other` has 326 images in 224x224 format
-* `sample_images` (for website) has 11 images in original formats
+* `sample_images` (for Streamlit) has 11 images in original formats
 
 ## 🐐 To-Do / Improvements
  * Add Grad-CAM visualizations
