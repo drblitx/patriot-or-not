@@ -10,7 +10,6 @@ import torch
 from torchvision import transforms, models
 from torchvision.models import resnet18, ResNet18_Weights
 from PIL import Image
-import numpy as np
 
 # set up device
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
