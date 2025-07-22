@@ -3,7 +3,7 @@
 
 # images due to size limits
 data/
-*.jpg
+banners.jpg
 
 # streamlit config file
 .streamlit/
