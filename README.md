@@ -2,6 +2,8 @@
 
 Being a massive New England Patriots fan, I thought it'd be fun to create a simple deep learning app that classifies whether an image is of a New England Patriots player **during the Brady years (2000-2019) or not**. This project is built using PyTorch for model training and Streamlit for the interactive demo. 
 
+## 🔗 https://patriot-or-not.streamlit.app
+
 ## 🏟️ Project Goals
 * Train a binary image classifier to distinguish Patriots players from other NFL players.
 * Use transfer learning with a pretrained Convolutional Neural Network (CNN).
